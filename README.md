@@ -65,7 +65,9 @@ This app tries to conserve as much of your phones battery as possible when it ge
 
 ## Wireframes
 [Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="https://github.com/TheTechThree/BatteryHero/blob/main/wireframe0.jpg">
+
+<img src="https://github.com/TheTechThree/BatteryHero/blob/main/wireframe0.jpg">
 
 ### [BONUS] Digital Wireframes & Mockups
 
