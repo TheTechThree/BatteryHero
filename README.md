@@ -68,15 +68,8 @@ This app tries to conserve as much of your phones battery as possible when it ge
 
 <img src="https://github.com/TheTechThree/BatteryHero/blob/main/wireframe1.jpg" width="400">
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
 ## Schema 
-[This section will be completed in Unit 9]
 ### Models
-[Add table of models]
+Property: setLevel Type: Int Description: Battery level threshold
 ### Networking
-- [Add list of network requests by screen ]
-- [Create basic snippets for each Parse network request]
-- [OPTIONAL: List endpoints if using existing API such as Yelp]
+-None
