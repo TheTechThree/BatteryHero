@@ -1,5 +1,6 @@
 package com.example.android.batteryhero;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -13,6 +14,7 @@ import android.os.BatteryManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     EditText editBatteryLevel;
     TextView setLevel;
     TextView currentLevel;
+    Button btnAlert;
+    String threshold;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +36,12 @@ public class MainActivity extends AppCompatActivity {
         editBatteryLevel = findViewById(R.id.et_battery_level);
         setLevel = findViewById(R.id.tv_current_set_level);
         currentLevel = findViewById(R.id.tv_current_level);
+
     }
 
     public void setBatteryLevel(View view) {
-        String level = editBatteryLevel.getText().toString();
-        setLevel.setText("Current Set Level: " + level + "%");
+        threshold = editBatteryLevel.getText().toString();
+        setLevel.setText("Current Set Level: " + threshold + "%");
     }
 
     public void getCurrentBatteryLevel(View view) {
@@ -51,6 +56,19 @@ public class MainActivity extends AppCompatActivity {
         String currentLevelString = String.valueOf(batteryPct);
 
         currentLevel.setText("Current Battery Level: " + currentLevelString + "%");
+
+
+        if(batteryPct <= Float.parseFloat(threshold)) {
+            btnAlert = (Button) findViewById(R.id.btn_get_level);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+            builder.setMessage("Battery at danger zone.")
+                    .setNegativeButton("Close", null);
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
 
         closeBackGroundApps(getApplicationContext());
     }
