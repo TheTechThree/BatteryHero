@@ -74,3 +74,6 @@ Property: setLevel Type: Int Description: Battery level threshold
 ### Networking
 -None
 
+### GIF's
+![progress-0](https://github.com/TheTechThree/BatteryHero/blob/main/BatterHero0.gif)
+
