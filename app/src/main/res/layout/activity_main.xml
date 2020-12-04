@@ -49,8 +49,7 @@
         android:layout_below="@+id/tv_current_set_level"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="90dp"
-        android:text="Get Battery Level"
-        android:onClick="getCurrentBatteryLevel"/>
+        android:text="Get Battery Level"/>
 
     <TextView
         android:id="@+id/tv_current_level"
@@ -60,5 +59,12 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="90dp"
         android:text="Current Battery Level: " />
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Alarm"
+        android:onClick="startAlarm" />
 
 </RelativeLayout>
