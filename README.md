@@ -31,10 +31,11 @@ This app tries to conserve as much of your phones battery as possible when it ge
 * Choosing the battery level - Done
 * Checking current battery level - Done
 * Battery level alert - Done
-* Close background apps - In Progress
+* Close background apps - Done
 
 **Optional Nice-to-have Stories**
 
+* Check battery level and close apps automatically - In Progress
 * Block unnecessary apps
     * If battery level is above threshold, unblock apps
     * If charging, it stops blocking apps
