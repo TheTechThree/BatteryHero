@@ -28,10 +28,10 @@ This app tries to conserve as much of your phones battery as possible when it ge
 
 **Required Must-have Stories**
 
-* Choosing the battery level
-* Checking current battery level
-* Battery level alert
-* Close background apps
+* Choosing the battery level - Done
+* Checking current battery level - Done
+* Battery level alert - Done
+* Close background apps - In Progress
 
 **Optional Nice-to-have Stories**
 
@@ -73,3 +73,7 @@ This app tries to conserve as much of your phones battery as possible when it ge
 Property: setLevel Type: Int Description: Battery level threshold
 ### Networking
 -None
+
+### GIF's
+![progress-0](https://github.com/TheTechThree/BatteryHero/blob/main/BatterHero0.gif)
+
