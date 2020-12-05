@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -32,6 +33,36 @@ public class MainActivity extends AppCompatActivity {
     float batteryPct;
     private PendingIntent pendingIntent;
     private AlarmManager manager;
+    IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+    Intent batteryStatus = registerReceiver(null, ifilter);
+
+//    private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            Log.d("Rann", "Running");
+//            int scale = intent.getIntExtra(BatteryManager.EXTRA_SCALE,-1);
+//            int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL,-1);
+//            // Display the battery level in TextView
+//
+//            // Calculate the battery charged percentage
+//            float percentage = level/ (float) scale;
+//
+//            String action = intent.getAction();
+//            if (Intent.ACTION_BATTERY_CHANGED.equals(action)) {
+//                if (percentage >= Float.parseFloat(threshold)) {
+//                    btnAlert = (Button) findViewById(R.id.btn_get_level);
+//
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//
+//                    builder.setMessage("Battery at danger zone.")
+//                            .setNegativeButton("Close", null);
+//
+//                    AlertDialog alert = builder.create();
+//                    alert.show();
+//                }
+//            }
+//        }
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,30 +82,44 @@ public class MainActivity extends AppCompatActivity {
         setLevel.setText("Current Set Level: " + threshold + "%");
     }
 
-    public Intent getBatteryStatus() {
+    public float getBatLevel() {
         IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+        Intent batteryStatus = registerReceiver(null, ifilter);
 
-        return registerReceiver(null, ifilter);
+        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+
+        batteryPct = level * 100 / (float)scale;
+        return batteryPct;
     }
 
-    public PackageManager getMainPackageManager() {
-        return getPackageManager();
-    }
+//    public void displayAlert() {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+//        Log.d("Rann", "Got here");
+//
+//        builder.setMessage("Battery at danger zone.")
+//                .setNegativeButton("Close", null);
+//        Log.d("Rann", "Got here1");
+//
+//        AlertDialog alert = builder.create();
+//        Log.d("Rann", "Got here2");
+//        alert.show();
+//    }
 
+//    public void closeApps() {
+//        closeBackGroundApps(context);
+//    }
+//
 //    public void closeBackGroundApps(Context c) {
-//        IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-//        Intent mainBatteryStatus = registerReceiver(null, ifilter);
 //
 //        assert batteryStatus != null;
 //        int level = batteryStatus.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
 //        int scale = batteryStatus.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
 //
-//        batteryPct = level * 100 / (float)scale;
+//        batteryPct = level * 100 / (float) scale;
 //        String currentLevelString = String.valueOf(batteryPct);
 //
-//        currentLevel.setText("Current Battery Level: " + currentLevelString + "%");
-//
-//        if(batteryPct <= Float.parseFloat(threshold)) {
+//        if (batteryPct <= Float.parseFloat(threshold)) {
 //            btnAlert = (Button) findViewById(R.id.btn_get_level);
 //
 //            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -84,6 +129,8 @@ public class MainActivity extends AppCompatActivity {
 //
 //            AlertDialog alert = builder.create();
 //            alert.show();
+//        }
+//    }
 //
 //            List<ApplicationInfo> packages;
 ////            PackageManager pm;
@@ -193,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            }
 //        }
-//    }
 
     public void startAlarm(View view) {
         manager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
